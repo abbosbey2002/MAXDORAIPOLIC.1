@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.containers {
+  max-width: 1090px;
+  padding: 0px 10px;
+  margin: 0 auto;
+}
+
+.clientModal{
+  top: -1000px;
+  transition: all 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+.active{
+  top: 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 738px;
+    padding: 0px 30px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: 546px;
+    padding: 0px 35px;
+  }
+}
