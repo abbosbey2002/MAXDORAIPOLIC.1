@@ -7,7 +7,6 @@ import DefaultLayout from "./component/DefaultLayout";
 import Osago from "./page/osago/Osago";
 import Accident from "./page/accident/Accident";
 import Calculate from "./page/osago/Calculate";
-import Payment from "./page/Payment";
 
 const router = createBrowserRouter([
     {
@@ -38,11 +37,6 @@ const router = createBrowserRouter([
         path: "/calculate",
         element: <Calculate />
     },
-    {
-        path: "/payment",
-        element: <Payment />
-    },
-  
     {
         path: "*",
         element : <Notfound />
