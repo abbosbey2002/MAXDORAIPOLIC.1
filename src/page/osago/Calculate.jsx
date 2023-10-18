@@ -96,6 +96,7 @@ props.setDrivers(drivers)
 
   useEffect(() => {
     addOneYearAndOneDayToCurrentDate();
+    calculateAmount()
   
   }, []);
 
@@ -178,17 +179,7 @@ props.setDrivers(drivers)
   };
 
   const calculateAmount = async () => {
-    console.log(
-      sumInsured,
-      calcCitizenship,
-      calcType_of_person,
-      car_type,
-      amountOfDrivers,
-      period,
-      calcRegion,
-      discount
-    );
-    console.log("discount", discount);
+ 
 
     if (
       period !== undefined &&
@@ -259,13 +250,13 @@ props.setDrivers(drivers)
     }
   };
 
-  function amountDrivers() {
-    setAmountOFDrivers(1);
-    console.log(amountOfDrivers);
+ async function amountDrivers() {
+     setAmountOFDrivers(1);
+    calculateAmount()
   }
-  function amountDrivers2() {
+ async function amountDrivers2() {
     setAmountOFDrivers(3);
-    cal
+    calculateAmount()
   }
 
   const [active, setActive] = useState(false);
@@ -287,7 +278,8 @@ props.setDrivers(drivers)
 
       setEndtDate(new Date(nextYear));
     }
-    console.log(period);
+   calculateAmount()
+    
   };
 
   const deleteDriver= (e)=>{
@@ -299,7 +291,18 @@ props.setDrivers(drivers)
   const openModalDriver = () => {
     console.log("active");
     return setActive(!active);
+    
   };
+
+  const changeDiscount = async (e) =>{
+     setDiscount(e.target.value)
+    calculateAmount()
+  }
+
+//   const changeDiscount = async (e) =>{
+//     setDiscount(e.target.value)
+//    calculateAmount()
+//  }
 
   return (
     <>
@@ -347,10 +350,8 @@ props.setDrivers(drivers)
                       name="drivers"
                       id="drivers_2"
                       defaultValue={3}
-
-                      // style={{ marginLeft: 0, marginRight: 10 }}
+                      defaultChecked
                       required=""
-                      checked
                     />
                     <label htmlFor="drivers_2">Не ограничено</label>
                   </div>
@@ -393,7 +394,7 @@ props.setDrivers(drivers)
                 aria-label=""
                 name="discount"
                 id="discount"
-                onChange={(e) => setDiscount(e.target.value)}
+                onChange={changeDiscount}
               >
                 <option value={2} selected>
                   Один страховой случай, наступивший в период действия
@@ -450,27 +451,6 @@ props.setDrivers(drivers)
               </div>
             </div>
             {/*==========----- / Elektron polisning kuchga kirish sanasini kiriting yoki tanlang - ? -----==========*/}
-            <div className="col-sm-12 col-lg-3 my-2">
-              <label
-                htmlFor="end_date"
-                className="form-label"
-                style={{ opacity: 0 }}
-              >
-                end
-              </label>
-              <button
-                id="calculateButton"
-                type="hidden"
-                onClick={calculateAmount}
-                className="btn btn-danger"
-                style={{ width: "100%", display: "block" }}
-              >
-                Расчет
-                <span>
-                  <i className="fa-solid fa-calculator mx-1" />
-                </span>
-              </button>
-            </div>
           </div>
                             {
                               drivers.map((driver, index) => {
