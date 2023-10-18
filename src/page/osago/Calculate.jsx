@@ -53,7 +53,7 @@ props.setDrivers(drivers)
 
   const [startDate, setStartDate] = useState();
   const [endDate, setEndtDate] = useState();
-  console.log(startDate);
+
 
   function addOneYearAndOneDayToCurrentDate() {
     const today = new Date();
@@ -94,14 +94,9 @@ props.setDrivers(drivers)
   let car_type = 0.1;
 
 
-  useEffect(() => {
-    addOneYearAndOneDayToCurrentDate();
-    calculateAmount()
   
-  }, []);
-
   // localstroge
-
+  
   // end calculatge summ
 
   const [driver, setDriver] = useState();
@@ -110,13 +105,12 @@ props.setDrivers(drivers)
   const [isFamily, setIsFamily] = useState(false);
 
   const addDrivers = () => {
-    console.log("drvier", driversSeria, driversNumber, driverBirthdate);
     const req = async () => {
       let req = await getPersonData(
         driversSeria,
         driversNumber,
         driverBirthdate
-      );
+        );
       if (req.req) {
         setDriver(req);
         setIsFamily(true);
@@ -142,7 +136,6 @@ props.setDrivers(drivers)
     let checkSingleDriver=true;
     drivers.map(drv => {
       if(drv.pinfl === driver.pinfl){
-        console.log('checkSingleDriver', checkSingleDriver);
         return checkSingleDriver =false;
       }
     })
@@ -168,16 +161,16 @@ props.setDrivers(drivers)
       setDriversNumber("");
       setDriverBirthdate("");
       setDriversNumber("");
-      console.log("drivers", drivers);
+   
       document.getElementById("driverPassportSeria").value = "";
       document.getElementById("driverPassportNumber").value = "";
       document.getElementById("driverBirthdate").value = "";
 
     }else{
-      console.log('driver mavjud');
+      Alert('driver mavjud');
     }
   };
-
+  
   const calculateAmount = async () => {
  
 
@@ -185,10 +178,10 @@ props.setDrivers(drivers)
       period !== undefined &&
       discount !== undefined &&
       amountOfDrivers !== undefined
-    ) {
-      setTotalAmount( 
-        (await Math.round(
-          sumInsured *
+      ) {
+        setTotalAmount( 
+          (await Math.round(
+            sumInsured *
             calcCitizenship *
             calcType_of_person *
             car_type *
@@ -196,14 +189,14 @@ props.setDrivers(drivers)
             period *
             calcRegion *
             discount
-        )) / 100
-      );
-      props.amountChange(await totalAmount);
-
-      setagreement({
-        agreementId: uuidv4(),
-        agreementDate: agreementDate.toISOString().slice(0, 10),
-        periodStartDate: startDate.toISOString().slice(0, 10),
+            )) / 100
+            );
+            props.amountChange(await totalAmount);
+            
+            setagreement({
+              agreementId: uuidv4(),
+              agreementDate: agreementDate.toISOString().slice(0, 10),
+              periodStartDate: startDate.toISOString().slice(0, 10),
         periodEndDate: endDate.toISOString().slice(0, 10),
         paymentDate: agreementDate.toISOString().slice(0, 10),
         policyDeliveryDate: startDate.toISOString().slice(0, 10),
@@ -216,13 +209,13 @@ props.setDrivers(drivers)
             period *
             calcRegion *
             discount
-        ) / 100,
-        policyBlankNumber: "1",
-        isLimited: amountOfDrivers == 1,
-      });
-      props.setAgriment({
-        agreementId: uuidv4(),
-        agreementDate: agreementDate.toISOString().slice(0, 10),
+            ) / 100,
+            policyBlankNumber: "1",
+            isLimited: amountOfDrivers == 1,
+          });
+          props.setAgriment({
+            agreementId: uuidv4(),
+            agreementDate: agreementDate.toISOString().slice(0, 10),
         periodStartDate: startDate.toISOString().slice(0, 10),
         periodEndDate: endDate.toISOString().slice(0, 10),
         paymentDate: agreementDate.toISOString().slice(0, 10),
@@ -250,11 +243,11 @@ props.setDrivers(drivers)
     }
   };
 
- async function amountDrivers() {
-     setAmountOFDrivers(1);
+  async function amountDrivers() {
+    setAmountOFDrivers(1);
     calculateAmount()
   }
- async function amountDrivers2() {
+  async function amountDrivers2() {
     setAmountOFDrivers(3);
     calculateAmount()
   }
@@ -275,7 +268,7 @@ props.setDrivers(drivers)
       setEndtDate(new Date(nextYear));
     } else if (e.target.value == 0.2) {
       const nextYear = today.setDate(today.getDate() + 20);
-
+      
       setEndtDate(new Date(nextYear));
     }
    calculateAmount()
@@ -283,13 +276,12 @@ props.setDrivers(drivers)
   };
 
   const deleteDriver= (e)=>{
-    console.log(e.target.id);
     const newArray = drivers.filter((_, index) => index != e.target.id);
     setDrivers(newArray);
   }
+  
 
   const openModalDriver = () => {
-    console.log("active");
     return setActive(!active);
     
   };
@@ -303,6 +295,12 @@ props.setDrivers(drivers)
 //     setDiscount(e.target.value)
 //    calculateAmount()
 //  }
+
+calculateAmount()
+useEffect(() => {
+  addOneYearAndOneDayToCurrentDate();
+
+}, []);
 
   return (
     <>
@@ -447,7 +445,6 @@ props.setDrivers(drivers)
                   disabled=""
                   defaultValue={endDate?.toISOString().slice(0, 10)}
                 />
-                {/* {console.log(endDate.toISOString().slice(0 , 10))} */}
               </div>
             </div>
             {/*==========----- / Elektron polisning kuchga kirish sanasini kiriting yoki tanlang - ? -----==========*/}

@@ -25,11 +25,11 @@ function Osago() {
     const [client, setClient] = useState();
     const [vehicle, setVehicle] = useState()
     const [owner, setOwner] = useState();
-    const [agreement, setAgriment] = useState();
+    const [agreement, setAgriment] = useState({premiumAmount: 0});
     
 
 
-
+    const [isPayment, setIsPayment]=useState(false)
     const [iSCalculate, setiSCalculate] = useState(false);
     // const [ownerseria, setOwerseria] = useState();
     // const [ownerNumner, setOwerNumber] = useState();
@@ -59,6 +59,7 @@ function Osago() {
         let req = await getDriver(Pseria, Pnumber, vehilePinfl);
 
         if (await req.req) {
+            setIsClient(true);
             const firstName = req.driverPersonInfo.firstNameLatin;
             const lastName = req.driverPersonInfo.lastNameLatin;
             const surName = req.driverPersonInfo.middleNameLatin;
@@ -79,11 +80,10 @@ function Osago() {
               passportSeries: Pseria,
               passportNumber: Pnumber
             };
-            setOwner(await owner);
+            setOwner(owner);
           
-            setIsClient(true);
+            
             document.getElementById("checkOwnerStatusBox").style.display = "block";
-            console.log(req);
            
             setClient({
                 firstName: req.driverPersonInfo.firstNameLatin,
@@ -130,7 +130,8 @@ function Osago() {
     
     //
     const finish = async() => {
-      AddAgrementOsago({agreement,  client, owner, vehicle,  drivers,})
+     let res=await AddAgrementOsago({agreement,  client, owner, vehicle,  drivers,})
+     setIsPayment(res==true);
     }
     //
     const openCalculate = () => {
@@ -196,8 +197,6 @@ function Osago() {
         button.classList.remove('d-none');
         button.classList.add('d-block');
         let req = await getCar(govNumber, techpassportseria, techPassportNumber);
-
-        console.log("next", req);
         if (await req.req) {
             button.classList.remove('d-block');
             button.classList.add('d-none');
@@ -268,7 +267,6 @@ function Osago() {
         let req = await getPersonData(seriaClient, numberClient, birthdateCLient)
         if (await req.req) {
             openCalculate()
-            console.log(req);
             setClient({
               firstName: req.firstNameLatin,
               lastName: req.lastNameLatin,
@@ -514,7 +512,8 @@ function Osago() {
                                 amountChange={amountChange}/>
                         } </div>
                         <Amount totalAmount={amount}/>
-                        <Payment />
+                        {isPayment && <Payment agreement={agreement} />
+                        }
                     
                     </div>
                 </div>

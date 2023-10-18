@@ -16,17 +16,18 @@ const AddAgrementOsago = async (data) => {
     );
 
     const agreementResponse = response.data;
-    alert('data keldi')
-    console.log(agreementResponse);
+    alert('Paymentga o`tish')
+    // console.log(agreementResponse);
     
     if(agreementResponse.operationResult.result === 0){
+      return true;
      let res = CreateOrder({"policy_id": agreementResponse.operationResult.eosgouzPolicyId, data:data}); 
      console.log('save order', res); 
     }
 
   } catch (error) {
-    console.log(data);
-    console.log("Bu osago get policy id =",  error);
+ 
+    // console.log("Bu osago get policy id =",  error);
     alert('Nimadir  xato ketti qayta urining')
     // Xato xolda ishlashni aniqlash uchun kodlarni shu joyga yozing
   }
