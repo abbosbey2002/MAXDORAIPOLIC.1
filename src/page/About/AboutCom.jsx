@@ -31,19 +31,19 @@ const About = () => {
 
                         <div className="right__bottom">
                             <div className="bottom__item">
-                                <img src="" alt=""/>
+                                <img className="img_about" src="" alt=""/>
                                 <h1 className="bottom__title">First</h1>
                             </div>
                             <div className="bottom__item">
-                                <img src="" alt=""/>
+                                <img className="img_about" src="" alt=""/>
                                 <h1 className="bottom__title">Second</h1>
                             </div>
                             <div className="bottom__item">
-                                <img src="" alt=""/>
+                                <img className="img_about" src="" alt=""/>
                                 <h1 className="bottom__title">Third</h1>
                             </div>
                             <div className="bottom__item">
-                                <img src="" alt=""/>
+                                <img className="img_about" src="" alt=""/>
                                 <h1 className="bottom__title">Fourth</h1>
                             </div>
                         </div>
