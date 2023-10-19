@@ -549,8 +549,12 @@ function Osago() {
                                 amountChange={amountChange}/>
                         } </div>
                         <Amount totalAmount={amount}/>
+
                         {isPayment && <Payment agreement={agreement} />
                         }
+
+                        <Payment />
+
                     
                     </div>
                 </div>

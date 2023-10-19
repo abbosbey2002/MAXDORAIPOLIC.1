@@ -8,6 +8,9 @@ import Osago from "./page/osago/Osago";
 import Accident from "./page/accident/Accident";
 import Calculate from "./page/osago/Calculate";
 
+import About from "./page/About/AboutCom.jsx"
+import Contact from "./page/Contact/Contact.jsx";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -28,6 +31,14 @@ const router = createBrowserRouter([
     {
         path: "/osago",
         element: <Osago />
+    },
+    {
+        path: "/about",
+        element: <About />
+    },
+    {
+        path: "/contact",
+        element: <Contact />
     },
     {
         path: "/accident",

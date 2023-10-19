@@ -3,7 +3,9 @@ import payme from "../../../public/images/payme.svg";
 import oson from "../../../public/images/oson.svg";
 import click from "../../../public/images/click.svg";
 import uzum from "../../../public/images/uzum.svg";
+
 import "./payment.css"
+
 
 function Payment(props) {
     return (
@@ -22,7 +24,11 @@ function Payment(props) {
           </div>
           </div>
           <div className=''>
+
                 <button className='btn text-white bg-blue-700 py-3 px-6'>Pay</button>
+
+                <button className='btn text-white bg-blue-700 p'>Pay</button>
+
           </div>
         </div>
     )
