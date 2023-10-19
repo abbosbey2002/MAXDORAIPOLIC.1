@@ -552,9 +552,6 @@ function Osago() {
 
                         {isPayment && <Payment agreement={agreement} />
                         }
-
-                        <Payment />
-
                     
                     </div>
                 </div>
