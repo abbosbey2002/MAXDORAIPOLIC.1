@@ -551,7 +551,6 @@ function Osago() {
                         <Amount totalAmount={amount}/>
 
                         {isPayment && <Payment agreement={agreement} />}
-
                     
                     </div>
                 </div>
