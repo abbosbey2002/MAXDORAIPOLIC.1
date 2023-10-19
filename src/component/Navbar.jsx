@@ -34,7 +34,7 @@ function Navbar() {
                                         <Link to={"/about"} className="anchor">Biz haqimizda</Link>
                                     </li>
                                     <li>
-                                        <Link className="anchor">Xizmatlar</Link>
+                                        <Link to={"/bot"} className="anchor">Xizmatlar</Link>
                                     </li>
                                     {/*<li>*/}
                                     {/*    <Link className="anchor">Yangiliklar</Link>*/}
