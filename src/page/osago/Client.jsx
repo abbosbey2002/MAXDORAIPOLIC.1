@@ -27,13 +27,13 @@ function Client(props) {
         <>
              <div className="row" id="clientBox">
                 <h2 id="" className="mt-3 fs-1 fw-bold">
-                  Client malumotlari
+                Сведения о заявителе
                 </h2>
                 <div className="row rounded border p-3 my-3">
                   <div className="col-sm-12 col-lg-6">
                     <div className="row">
                       <label for="" className="form-label">
-                        Pasport Seria, raqam
+                        Серия / номер паспорта
                       </label>
                       <div className="col-12">
                         <div className="row">
@@ -66,7 +66,7 @@ function Client(props) {
 
                   <div className="col-sm-12 col-lg-4">
                     <div className="mb-3">
-                      <label className="form-label active">BirthDate</label>
+                      <label className="form-label active">Дата рождения</label>
                       <input
                         type="date"
                         onChange={e => {props.setBClientirthdate(e.target.value)}}

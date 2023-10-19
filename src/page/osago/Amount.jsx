@@ -47,16 +47,16 @@ function Amount(props) {
         </div>
 
         <div className="payment_box_items_images d-flex flex-wrap align-items-center gap-4">
-          <div className="pay_image w-2/12">
+          <div className="pay_image w-3/12">
             <img src={payme} alt="payme" />
           </div>
-          <div className="pay_image w-2/12">
+          <div className="pay_image w-3/12">
             <img src={click} alt="payme" />
           </div>
-          <div className="pay_image w-2/12">
+          <div className="pay_image w-3/12">
             <img src={oson} alt="payme" />
           </div>
-          <div className="pay_image w-2/12">
+          <div className="pay_image w-3/12">
             <img src={uzum} alt="payme" />
           </div>
         </div>

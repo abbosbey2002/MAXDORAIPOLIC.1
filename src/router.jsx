@@ -11,7 +11,6 @@ import Calculate from "./page/osago/Calculate";
 import About from "./page/About/AboutCom.jsx"
 import Contact from "./page/Contact/Contact.jsx";
 
-
 const router = createBrowserRouter([
     {
         path: "/",
