@@ -10,11 +10,33 @@ import Overlay from "../../component/Overlay";
 function Calculate(props) { // region code
     const navigate = useNavigate();
 
+    let car_type;
+
+ 
+    
+    
+    if (props.vehicle.typeIdForEosgoUz == "1") {
+        car_type=0.1
+    } else if (props.vehicle.typeIdForEosgoUz == "6") {
+        car_type=0.12
+        } else if (props.vehicle.typeIdForEosgoUz == "9") {
+            car_type=0.12
+        } else if (props.vehicle.typeIdForEosgoUz == "15") {
+            car_type = 0.04
+        } else {
+            car_type = 0.1
+        }
+      
+    
+ 
+
+ 
    
     
     function uuidv4() {
         return([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
     }
+  
     const regionsIDForEosgouz = {
         "01": 10,
         10: 11,
@@ -41,10 +63,10 @@ function Calculate(props) { // region code
     } else {
         calcRegion = 1;
     }
-
+    
     const [period, setPeriod] = useState(1);
-
-
+    
+    
     const [drivers, setDrivers] = useState([]);
 
     props.setDrivers(drivers)
@@ -85,29 +107,10 @@ function Calculate(props) { // region code
     const [sumInsured, setSumInsured] = useState(40000000); // 40 000 000
     let calcCitizenship = 1;
     let calcType_of_person = 1; // Физическое лицо
-
-
-    const [car_type, setCartype] = useState();
-
-    useEffect(() => {
-
-        if (props.vehicle.typeIdForEosgoUz == "1") {
-            setCartype(0.1)
-        } else if (props.vehicle.typeIdForEosgoUz == "6") {
-            setCartype(0.12)
-        } else if (props.vehicle.typeIdForEosgoUz == "9") {
-            setCartype(0.12)
-        } else if (props.vehicle.typeIdForEosgoUz == "15") {
-            setCartype(0.04)
-        } else {
-            setCartype(0.1)
-        }
-        console.log((car_type));
-    }, [])
-    // end calculatge summ
+    
 
     const [driver, setDriver] = useState();
-
+    
     const [family, setFamily] = useState();
     const [isFamily, setIsFamily] = useState(false);
 
