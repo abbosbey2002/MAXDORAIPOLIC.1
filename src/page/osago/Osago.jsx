@@ -12,8 +12,8 @@ import Navbar from "../../component/Navbar";
 import getDriver from "../../component/getDriver";
 import Amount from "./Amount";
 import Calculate from "./Calculate";
-import Payment from "../Payment";
 import AddAgrementOsago from "../../component/AddAgrementOsago";
+import Payment from "./Payment";
 
 function Osago() {
     const mavigate = useNavigation()
@@ -514,9 +514,8 @@ function Osago() {
                                 amountChange={amountChange}/>
                         } </div>
                         <Amount totalAmount={amount}/>
-                       
-
-                        <div className="row"></div>
+                        <Payment />
+                    
                     </div>
                 </div>
             </section>
