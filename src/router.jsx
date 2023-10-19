@@ -10,6 +10,8 @@ import Calculate from "./page/osago/Calculate";
 
 import About from "./page/About/AboutCom.jsx"
 import Contact from "./page/Contact/Contact.jsx";
+import BotCom from "./page/botCom/BotCom.jsx";
+
 
 const router = createBrowserRouter([
     {
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
     {
         path: "/accident",
         element: <Accident />
+    },
+    {
+        path: "/bot",
+        element: <BotCom />
     },
     {
         path: "/calculate",
