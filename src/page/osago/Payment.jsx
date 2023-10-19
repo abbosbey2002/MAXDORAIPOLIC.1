@@ -3,22 +3,30 @@ import payme from "../../../public/images/payme.svg";
 import oson from "../../../public/images/oson.svg";
 import click from "../../../public/images/click.svg";
 import uzum from "../../../public/images/uzum.svg";
+import "./payment.css"
 
 function Payment(props) {
-  return (
-    <div className="col-sm-12 col-lg-9 bg-white rounded">
-        <div className='flex'>
-            <h2 className='text-3xl me-4'>summa :</h2>
-            <h2 className='text-3xl'>{props.agreement?.premiumAmount} UZS</h2>
+    return (
+        <div className="col-sm-12 col-lg-9 bg-white mb-6 rounded">
+          <div>
+
+            <div className='campany grid grid-cols-4 gap-5'>
+                  <div className='px-4 py-3 rounded-xl border'>
+                    <img width="100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Zurich_Insurance_Group_logo.svg/1280px-Zurich_Insurance_Group_logo.svg.png" alt="payme" />
+                  </div>
+          </div>
+          <div className='payme grid grid-cols-4 gap-5'>
+                  <div className='px-4 py-3 rounded-xl border'>
+                    <img src={payme} alt="payme" />
+                  </div>
+          </div>
+          </div>
+          <div className=''>
+                <button className='btn text-white bg-blue-700 py-3 px-6'>Pay</button>
+          </div>
         </div>
-      <div className='row border gap-2'>
-        <div className='col-3 border'> <img  src={payme} alt="..." class="img-thumbnail"></img> </div>
-        <div className='col-3 border'> <img  src={oson} alt="..." class="img-thumbnail"></img> </div>
-        <div className='col-3 border'> <img  src={click} alt="..." class="img-thumbnail"></img> </div>
-        <div className='col-3 border'> <img  src={uzum} alt="..." class="img-thumbnail"></img> </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Payment
+

@@ -29,7 +29,7 @@ function Osago() {
     
 
 
-    const [isPayment, setIsPayment]=useState(false)
+    const [isPayment, setIsPayment]=useState(true)
     const [iSCalculate, setiSCalculate] = useState(false);
     // const [ownerseria, setOwerseria] = useState();
     // const [ownerNumner, setOwerNumber] = useState();
@@ -51,6 +51,23 @@ function Osago() {
 
     const [Pseria, setPseria] = useState("aa");
     const [Pnumber, setPnumbr] = useState(6194736);
+
+    const regionsIDForEosgouz = {
+        "01": 10,
+        "10": 11,
+        "20": 12,
+        "25": 13,
+        "30": 14,
+        "40": 15,
+        "50": 16,
+        "60": 17,
+        "70": 18,
+        "75": 19,
+        "80": 20,
+        "85": 21,
+        "90": 22,
+        "95": 23,
+      };
 
     const req = async () => {
         button.classList.remove('d-none');
@@ -130,6 +147,7 @@ function Osago() {
     
     //
     const finish = async() => {
+        console.log(agreement, vehicle, client);
      let res=await AddAgrementOsago({agreement,  client, owner, vehicle,  drivers,})
      setIsPayment(res==true);
     }
@@ -205,6 +223,10 @@ function Osago() {
             document.getElementById("ownernumber").style.borderColor = "#dee2e6";
             document.getElementById("vehilegobNumber").style.borderColor = "#dee2e6";
 
+            document.getElementById("vehileSeria").style.borderColor = "#058c19";
+            document.getElementById("vehileNumber").style.borderColor = "#058c19";
+            document.getElementById("vehilegobNumber").style.borderColor = "#058c19";
+
             SetvehilePinfl(req.pinfl);
             setCar(await req);
             document.getElementById("getCarInfoBox").style.display = "none";
@@ -216,24 +238,37 @@ function Osago() {
                 techPassportNumber
             }));
             setVehicle(  {
-                brand: null,
+                brand: req.modelName, 
                 model: req.modelName,
                 engineNumber: req.engineNumber,
                 insurancePeriodIdForEosgoUz: 1,
-                typeIdForEosgoUz: req.vehicleTypeId,
+                typeIdForEosgoUz: req.vehicleTypeId,  // Bu avtomobil turi; shuni calculatorga olib o'tish kerak, car_type ga berib yuborish kerak, if ishlatib, 243 qatordagi if ni olib ishlaish kerak!
                 manufacturedYear: req.issueYear,
                 stateRegistrationNumber: req.govNumber,
                 bodyNumber: req.bodyNumber,
                 passportSeries: techpassportseria,
                 passportNumber: techPassportNumber,
-                passportIssueDate: "2022-01-13",
+                passportIssueDate: req.techPassportIssueDate.slice(0, 10), // API dan kelgan malumotni chiqarish kerak20-11-2002
                 discountTypeIdForEosgoUz: "1",
                 registeredPlaceIdForEosgoUz: "1",
-                regionIdForEosgoUz: 17,
+                regionIdForEosgoUz: regionsIDForEosgouz[req.govNumber.substr(0,2)],  // Hato (To'g'ri qo'yish kerak)
                 pinfl : req.pinfl,
                 inn: req.inn
               },)
             // getVehiclocale();
+
+            // if(changeVehicleType == "1"){
+            //     car_type = 0.1;
+            //   } else if(changeVehicleType == "6"){
+            //     car_type = 0.12;
+            //   } else if(changeVehicleType == "9"){
+            //     car_type = 0.12;
+            //   } else if(changeVehicleType == "15"){
+            //     car_type = 0.04;
+            //   } else {
+            //     car_type = 0.1
+            //   }
+              
         } else {
             document.getElementById("vehileSeria").style.borderColor = "red";
             document.getElementById("vehileNumber").style.borderColor = "red";
@@ -391,7 +426,7 @@ function Osago() {
                                             </label>
                                             <button type="button" className="btn hover:bg-[#058668dd] bg-[#058668] "
                                                 onClick={getVehicle}>
-                                                <i id="refreshInput" className="fa-solid fa-magnifying-glass text-white"></i>
+                                               <i class="fas fa-long-arrow-alt-right text-white"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -420,13 +455,13 @@ function Osago() {
                                     {display: "none"}
                             }>
                                 <h2 id="" className="mt-3 fs-1 fw-bold">
-                                    Haydovchi malumotlari
+                                Информация о владельце транспортного средства
                                 </h2>
                                 <div className="row rounded border p-3 my-3">
                                     <div className="col-sm-12 col-lg-6">
                                         <div className="row">
                                             <label for="" className="form-label">
-                                                Pasport Seria, raqam
+                                            Серия / номер паспорта
                                             </label>
                                             <div className="col-12">
                                                 <div className="row">
@@ -466,7 +501,7 @@ function Osago() {
                                             </label>
                                             <button type="button" className="btn hover:bg-[#058668dd] bg-[#058668] "
                                                 onClick={req}>
-                                                <i id="refreshInput" className="fa-solid fa-magnifying-glass text-white"></i>
+                                                <i class="fas fa-long-arrow-alt-right text-white"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -492,7 +527,7 @@ function Osago() {
                                     }>
                                         <input className="form-check-input" type="checkbox" defaultChecked id="checkOwnerStatus"
                                             onChange={clientChange}/>
-                                        <label className="form-check-label" htmlFor="checkOwnerStatus">
+                                        <label className="form-check-label ms-3" htmlFor="checkOwnerStatus">
                                             Владелец транспортного средства является заявителем{" "} </label>
                                     </div>
                                 </div>
@@ -500,6 +535,7 @@ function Osago() {
 
                             {
                             !isClient && <Client reqCleint={reqCleint}
+                            
                                 setClinetSeria={setClinetSeria}
                                 setClinetNumber={setClinetNumber}
                                 setBClientirthdate={setBClientirthdate}
@@ -508,6 +544,7 @@ function Osago() {
                             {
                             iSCalculate && <Calculate setDrivers={setDrivers}
                                 finish={finish}
+                                vehicle={vehicle}
                                 setAgriment={setAgriment}
                                 amountChange={amountChange}/>
                         } </div>
