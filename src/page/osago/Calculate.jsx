@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import "../../../public/styles/general.scss";
 import Overlay from "../../component/Overlay";
 
+
 function Calculate(props) { // region code
     const navigate = useNavigate();
 
@@ -26,13 +27,7 @@ function Calculate(props) { // region code
         } else {
             car_type = 0.1
         }
-      
-    
- 
 
- 
-   
-    
     function uuidv4() {
         return([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
     }
@@ -65,16 +60,10 @@ function Calculate(props) { // region code
     }
     
     const [period, setPeriod] = useState(1);
-    
-    
     const [drivers, setDrivers] = useState([]);
-
     props.setDrivers(drivers)
-
     const [startDate, setStartDate] = useState();
     const [endDate, setEndtDate] = useState();
-
-
     function addOneYearAndOneDayToCurrentDate() {
         const today = new Date();
         const nextYear = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
@@ -97,8 +86,6 @@ function Calculate(props) { // region code
     props.amountChange(totalAmount);
 
     const [discount, setDiscount] = useState(2);
-
-    // onChange={(e) => setSkidka(e.target.value)}
 
     let agreementDate = new Date();
 
@@ -469,11 +456,8 @@ function Calculate(props) { // region code
                 </div>
             </div>
 
-            <div className={
-                `clientModal row justify-center absolute w-full ${
-                    active ? "active" : ""
-                }`
-            }>
+           {active && <div className='
+                `clientModal row justify-center fixed w-100' style={{left: "0", top: "0", zIndex: 9999}}>
                 <div className="col-sm-12 col-lg-6 m-8 bg-white rounded">
                     <section className="rounded" id="modal4"
                         style={
@@ -503,7 +487,7 @@ function Calculate(props) { // region code
                                         placeholder="AA"
                                         maxLength={2}/>
                                 </div>
-                                <div className="col-sm-12 col-lg-8 mb-3">
+                                <div className="col-sm-12 col-lg-4 mb-3">
                                     <label htmlFor="driverPassportNumber" className="form-label active">
                                         Номер паспорта
                                     </label>
@@ -517,7 +501,7 @@ function Calculate(props) { // region code
                                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                         maxLength={7}/>
                                 </div>
-                                <div className="col-sm-12 col-lg-8 mb-3">
+                                <div className="col-sm-12 col-lg-4 mb-3">
                                     <label htmlFor="driverBirthdate" className="form-label active">
                                         Дата рождения
                                     </label>
@@ -528,9 +512,9 @@ function Calculate(props) { // region code
                                         id="driverBirthdate"
                                         placeholder="35.78.1908"/>
                                 </div>
-                                <div className="col-sm-12 col-lg-4 mb-3">
+                                <div className="col-sm-12 col-lg-12 mb-3">
                                     <button onClick={addDrivers}
-                                        className="btn btn-danger mt-8">
+                                        className="btn hover:bg-[#058668dd] bg-[#058668] text-white w-100">
                                         Далее
                                         <span>
                                             <i className="fas fa-long-arrow-alt-right"/>
@@ -570,9 +554,13 @@ function Calculate(props) { // region code
                             }
                                 {
                                 isFamily && (
-                                    <div class="col-sm-12 col-lg-4">
+                                    
+                                    <div class="col-sm-12 col-lg-4 mb-3">
+                                        <label htmlFor="driverBirthdate" className="form-label" style={{opacity:"0"}}>
+                                        Сохранить
+                                    </label>
                                         <button onClick={saveDriver}
-                                            class="btn btn-danger">
+                                            class="btn hover:bg-[#058668dd] bg-[#058668] text-white w-100">
                                             Сохранить
                                         </button>
                                     </div>
@@ -584,7 +572,7 @@ function Calculate(props) { // region code
                         </section>
                     </section>
                 </div>
-            </div>
+            </div>}
             {
             active && <Overlay/>
         } </>

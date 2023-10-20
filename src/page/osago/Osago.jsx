@@ -16,7 +16,7 @@ import AddAgrementOsago from "../../component/AddAgrementOsago";
 import Payment from "./Payment";
 
 function Osago() {
-    const mavigate = useNavigation()
+    const naviate = useNavigation()
 
     const button = document.querySelector('.loading-splint');
 
@@ -29,7 +29,7 @@ function Osago() {
     
 
 
-    const [isPayment, setIsPayment]=useState(true)
+    const [isPayment, setIsPayment]=useState(false)
     const [iSCalculate, setiSCalculate] = useState(false);
     // const [ownerseria, setOwerseria] = useState();
     // const [ownerNumner, setOwerNumber] = useState();
@@ -74,7 +74,6 @@ function Osago() {
         button.classList.add('d-block');
 
         let req = await getDriver(Pseria, Pnumber, vehilePinfl);
-
         if (await req.req) {
             setIsClient(true);
             const firstName = req.driverPersonInfo.firstNameLatin;

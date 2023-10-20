@@ -1,0 +1,18 @@
+input[type="radio"]{
+    display: none;
+}
+input[name]:checked ~ label{
+    background-color: rgb(221 243 238);
+}
+.form-check-label{
+    width: fit-content;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-check-label img {
+    aspect-ratio: 4/1;
+}
